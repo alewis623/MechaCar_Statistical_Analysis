@@ -21,7 +21,7 @@ lot_summary <- scdata %>% group_by(Manufacturing_Lot) %>% summarize(Mean =mean(P
 #Deliverable 3 T-Tests on Suspension Coils
 ?t.test()
 ## Determine if the PSI across all manufacturing lots is statistically different from the population mean of 1500 PSI
-t.test(log10(scdata$PSI),mu=1500) 
+t.test(scdata$PSI,mu=1500)
 ## set Manufacturing lots
 lot1 <- scdata %>% filter(Manufacturing_Lot == "Lot1")
 head(lot1)
@@ -30,9 +30,12 @@ head(lot2)
 lot3 <- scdata %>% filter(Manufacturing_Lot == "Lot3")
 head(lot3)
 ## Determine PSI for lot 1 is statistically different from population mean of 1500
-t.test(log10(lot1$PSI),mu=1500)
+t.test(lot1$PSI,mu=1500)
 ## Determine PSI for lot 2 is statistically different from population mean of 1500
-t.test(log10(lot2$PSI),mu=1500)
+t.test(lot2$PSI,mu=1500)
 ## Determine PSI for lot 3 is statistically different from population mean of 1500
-t.test(log10(lot3$PSI),mu=1500)
-
+t.test(lot3$PSI,mu=1500)
+### Determine PSI for the 3 lots using subset noted in the technical analysis.
+t.test(subset(scdata$PSI, scdata$Manufacturing_Lot =="Lot1"),mu=1500)
+t.test(subset(scdata$PSI, scdata$Manufacturing_Lot =="Lot2"),mu=1500)
+t.test(subset(scdata$PSI, scdata$Manufacturing_Lot =="Lot3"),mu=1500)
